@@ -1,8 +1,10 @@
 package com.nikolay.stanchev.prime.services;
 
+import com.nikolay.stanchev.prime.models.PrimeNumber;
+
 public interface PrimeNumberService {
 
-    String isPrimeNumber(Long number);
+    PrimeNumber isPrimeNumber(Long number);
 
-    String nextPrimeNumber(Long number);
+    PrimeNumber nextPrimeNumber(Long number);
 }

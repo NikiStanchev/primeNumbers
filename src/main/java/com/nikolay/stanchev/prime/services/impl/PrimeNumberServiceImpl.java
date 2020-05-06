@@ -1,40 +1,25 @@
 package com.nikolay.stanchev.prime.services.impl;
 
+import com.nikolay.stanchev.prime.models.PrimeNumber;
 import com.nikolay.stanchev.prime.services.PrimeNumberService;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 @Service
 public class PrimeNumberServiceImpl implements PrimeNumberService {
     @Override
-    public String isPrimeNumber(Long number) {
-//        boolean flag = false;
-//        for(int i = 2; i <= number / 2; ++i)
-//        {
-//            // condition for nonprime number
-//            if(number % i == 0)
-//            {
-//                flag = true;
-//                break;
-//            }
-//        }
-
+    public PrimeNumber isPrimeNumber(Long number) {
         if (isPrime(number)){
-            return number + " is a prime number.";
+            return new PrimeNumber(number, "Is a prime number!");
         } else {
-            return number + " is not a prime number.";
+            return new PrimeNumber(number, "Is not a prime number!");
         }
     }
 
     @Override
-    public String nextPrimeNumber(Long number) {
-        String message = "Next prime number is: ";
-        // Base case
-        if (number <= 1){
-            return message + 2L;
-        }
+    public PrimeNumber nextPrimeNumber(Long number) {
+        String message = String.format("Is the next primer number after %d.", number);
 
         Long prime = number;
         boolean found = false;
@@ -49,7 +34,7 @@ public class PrimeNumberServiceImpl implements PrimeNumberService {
                 found = true;
             }
         }
-        return message + prime;
+        return new PrimeNumber(prime, message);
     }
 
     private  boolean isPrime(final Long number) {
